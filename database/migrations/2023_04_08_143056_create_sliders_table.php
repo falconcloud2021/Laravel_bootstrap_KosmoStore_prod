@@ -18,8 +18,8 @@ class CreateSlidersTable extends Migration
             $table->string('slider_img');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->integer('status')->default(1);
             $table->integer('slider_touches')->nullable();
+            $table->enum('slider_status', ['active','hold','stop'])->default('active');
             $table->timestamps();
         });
     }

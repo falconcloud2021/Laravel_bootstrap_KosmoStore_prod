@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 class CreateProductsTable extends Migration
 {
@@ -31,6 +32,7 @@ class CreateProductsTable extends Migration
             $table->string('product_size_ru')->nullable();
             $table->string('product_color_ua');
             $table->string('product_color_ru');
+            $table->decimal('price', 10, 2);
             $table->string('selling_price');
             $table->string('discount_price')->nullable();
             $table->string('short_description_ua');
@@ -43,9 +45,13 @@ class CreateProductsTable extends Migration
             $table->integer('special_offer')->nullable();
             $table->integer('special_deals')->nullable();
             $table->integer('product_touches')->nullable();
-            $table->smallInteger('product_rated')->nullable();
-            $table->integer('status')->default(0);
+            $table->float('product_rated', 3, 2)->nullable();
+            $table->enum('product_status', ['active','hold','stop'])->default('active');
+            $table->foreignIdFor(User::class, 'created_by')->nullable();
+            $table->foreignIdFor(User::class, 'updated_by')->nullable();
+            $table->foreignIdFor(User::class, 'deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

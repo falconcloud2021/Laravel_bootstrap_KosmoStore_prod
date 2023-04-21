@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 class CreateSubcategoriesTable extends Migration
 {
@@ -20,12 +21,17 @@ class CreateSubcategoriesTable extends Migration
             $table->string('subcategory_name_ru');
             $table->string('subcategory_slug_ua');
             $table->string('subcategory_slug_ru');
+            $table->string('subcategory_img')->nullable();
             $table->text('subcategory_description_ua')->nullable();
             $table->text('subcategory_description_ru')->nullable();
             $table->integer('subcategory_touches')->nullable();
-            $table->smallInteger('subcategory_rated')->nullable();
-            $table->string('subcategory_img')->nullable();
+            $table->float('subcategory_rated', 3, 2)->nullable();
+            $table->enum('subcategory_status', ['active','hold','stop'])->default('active');
+            $table->foreignIdFor(User::class, 'created_by')->nullable();
+            $table->foreignIdFor(User::class, 'updated_by')->nullable();
+            $table->foreignIdFor(User::class, 'deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -20,7 +20,8 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {return view('shop.index');});
 
-Route::get('/manager', function () {return view('dashboard.index');});
+Route::get('/manager', function () {return view('dashboard.index');})->name('manager');
+
 
 Route::get('/shop', function () {return view('shop.index');});
 
@@ -32,9 +33,21 @@ Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
-})->name('dashboard');
+})->name('admin.dashboard');
 
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard.index');
-})->name('dashboard');
+})->name('manager.dashboard');
+
+Route::prefix('brand')->group(function () {
+    Route::get('/list-add', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'brandsListAdd'])->name('brands.list-add'); 
+    Route::get('/chart-list', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'brandsChartList'])->name('brands.chart-list');
+    Route::get('/grid-detail', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'brandsGridDetail'])->name('brands.grid-detail');
+    Route::post('/store', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'storeBrand'])->name('brand.store');
+    Route::get('/edit/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'editBrand'])->name('brand.edit');
+    Route::post('/update/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'updateBrand'])->name('brand.update');
+    Route::get('/destroy/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'destroyBrand'])->name('brand.destroy');
+});
+    
+

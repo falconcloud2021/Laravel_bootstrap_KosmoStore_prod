@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 class CreatePostCategoriesTable extends Migration
 {
@@ -19,10 +20,15 @@ class CreatePostCategoriesTable extends Migration
             $table->string('blog_category_name_ru');
             $table->string('blog_category_slug_ua');
             $table->string('blog_category_slug_ru');
-            $table->integer('blog_category_touches')->nullable();
-            $table->smallInteger('blog_category_rated')->nullable();
             $table->string('blog_category_image')->nullable();
+            $table->integer('blog_category_touches')->nullable();
+            $table->float('blog_category_rated', 3, 2)->nullable();
+            $table->enum('blog_category_status', ['active','hold','stop'])->default('active');
+            $table->foreignIdFor(User::class, 'created_by')->nullable();
+            $table->foreignIdFor(User::class, 'updated_by')->nullable();
+            $table->foreignIdFor(User::class, 'deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

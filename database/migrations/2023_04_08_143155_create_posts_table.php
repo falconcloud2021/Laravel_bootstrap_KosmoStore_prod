@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 class CreatePostsTable extends Migration
 {
@@ -24,8 +25,13 @@ class CreatePostsTable extends Migration
             $table->text('post_details_ua');
             $table->text('post_details_ru');
             $table->integer('post_touches')->nullable();
-            $table->smallInteger('post_rated')->nullable(); 
+            $table->float('post_rated', 3, 2)->nullable();
+            $table->enum('post_status', ['active','hold','stop'])->default('active');
+            $table->foreignIdFor(User::class, 'created_by')->nullable();
+            $table->foreignIdFor(User::class, 'updated_by')->nullable();
+            $table->foreignIdFor(User::class, 'deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

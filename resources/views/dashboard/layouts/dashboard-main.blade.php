@@ -6,788 +6,120 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>Dashboard</title>
+    <title>Dashboard !</title>
     <!-- Simple bar CSS -->
-    <link rel="stylesheet" href="assets/dashboard/css/simplebar.css">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/simplebar.css') }}">
     <!-- Fonts CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!-- Icons CSS -->
-    <link rel="stylesheet" href="assets/dashboard/css/feather.css">
-    <link rel="stylesheet" href="assets/dashboard/css/select2.css">
-    <link rel="stylesheet" href="assets/dashboard/css/dropzone.css">
-    <link rel="stylesheet" href="assets/dashboard/css/uppy.min.css">
-    <link rel="stylesheet" href="assets/dashboard/css/jquery.steps.css">
-    <link rel="stylesheet" href="assets/dashboard/css/jquery.timepicker.css">
-    <link rel="stylesheet" href="assets/dashboard/css/quill.snow.css">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/uppy.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/jquery.steps.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/jquery.timepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/quill.snow.css') }}">
     <!-- Date Range Picker CSS -->
-    <link rel="stylesheet" href="assets/dashboard/css/daterangepicker.css">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/daterangepicker.css') }}">
+    <!-- Date tables CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/dataTables.bootstrap4.css') }}">
     <!-- App CSS -->
-    <link rel="stylesheet" href="assets/dashboard/css/app-light.css" id="lightTheme" disabled>
-    <link rel="stylesheet" href="assets/dashboard/css/app-dark.css" id="darkTheme">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/app-light.css') }}" id="lightTheme" disabled>
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/css/app-dark.css') }}" id="darkTheme">
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" type="text/css">
+     
   </head>
   <body class="vertical  dark  ">
     <div class="wrapper">
-      <nav class="topnav navbar navbar-light">
-        <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
-          <i class="fe fe-menu navbar-toggler-icon"></i>
-        </button>
-        <form class="form-inline mr-auto searchform text-muted">
-          <input class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted" type="search" placeholder="Пошуковий запит ..." aria-label="Search">
-        </form>
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link text-muted my-2" href="#" id="modeSwitcher" data-mode="dark">
-              <i class="fe fe-sun fe-16"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-shortcut">
-              <span class="fe fe-grid fe-16"></span>
-            </a>
-          </li>
-          <li class="nav-item nav-notif">
-            <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-notif">
-              <span class="fe fe-bell fe-16"></span>
-              <span class="dot dot-md bg-success"></span>
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="avatar avatar-sm mt-2">
-                <img src="./assets/avatars/face-1.jpg" alt="..." class="avatar-img rounded-circle">
-              </span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Профайл</a>
-              <a class="dropdown-item" href="#">Налаштування</a>
-              <a class="dropdown-item" href="#">Активності</a>
-              <!-- Authentication -->
-              <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    this.closest('form').submit();">
-                    {{ __('Logout') }}
-                </a>
-              </form>
-            </div>
-          </li>
-        </ul>
-      </nav>
-      <aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
-        <a href="#" class="btn collapseSidebar toggle-btn d-lg-none text-muted ml-2 mt-3" data-toggle="toggle">
-          <i class="fe fe-x"><span class="sr-only"></span></i>
-        </a>
-        <nav class="vertnav navbar navbar-light">
-          <!-- nav bar -->
-          <div class="w-100 mb-4 d-flex">
-            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
-              <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
-                <g>
-                  <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
-                  <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
-                  <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
-                </g>
-              </svg>
-            </a>
-          </div>
-          <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item dropdown">
-              <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-home fe-16"></i>
-                <span class="ml-3 item-text">Dashboard</span><span class="sr-only">(current)</span>
-              </a>
-              <ul class="collapse list-unstyled pl-4 w-100" id="dashboard">
-                <li class="nav-item active">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Основний</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Аналітика</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">E-commerce</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">CRM</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">ERM</span></a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <p class="text-muted nav-heading mt-4 mb-1">
-            <span>Ecommerce</span>
-          </p>
-          <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item dropdown">
-              <a href="#reports" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-home fe-16"></i>
-                <span class="ml-3 item-text">Звіти</span><span class="sr-only">(current)</span>
-              </a>
-              <ul class="collapse list-unstyled pl-4 w-100" id="reports">
-                <li class="nav-item active">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Основний</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Аналітика</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">E-commerce</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">CRM</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">ERM</span></a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item dropdown">
-              <a href="#sales" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-box fe-16"></i>
-                <span class="ml-3 item-text">Продажі</span>
-              </a>
-              <ul class="collapse list-unstyled pl-4 w-100" id="sales">         
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Замовлення</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Замовники</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Дебет</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Склад</span></a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a href="#ecommerce" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-box fe-16"></i>
-                <span class="ml-3 item-text">Категоризація</span>
-              </a>
-              <ul class="collapse list-unstyled pl-4 w-100" id="ecommerce">
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Бренди</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Продукти</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Категорії</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Підкатегорії</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Під Підкатегорії</span></a>
-                </li>               
-              </ul>
-            </li>
-            <li class="nav-item w-100">
-              <a class="nav-link" href="#">
-                <i class="fe fe-layers fe-16"></i>
-                <span class="ml-3 item-text">Widgets</span>
-                <span class="badge badge-pill badge-primary">New</span>
-              </a>
-            </li>
-          </ul>
-          <p class="text-muted nav-heading mt-4 mb-1">
-            <span>Apps</span>
-          </p>
-          <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item w-100">
-              <a class="nav-link" href="calendar.html">
-                <i class="fe fe-calendar fe-16"></i>
-                <span class="ml-3 item-text">Calendar</span>
-              </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a href="#contact" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-book fe-16"></i>
-                <span class="ml-3 item-text">Contacts</span>
-              </a>
-              <ul class="collapse list-unstyled pl-4 w-100" id="contact">
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Contact List</span></a>
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Contact Grid</span></a>
-                <a class="nav-link pl-3" href="#"><span class="ml-1">New Contact</span></a>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-user fe-16"></i>
-                <span class="ml-3 item-text">Profile</span>
-              </a>
-              <ul class="collapse list-unstyled pl-4 w-100" id="profile">
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Overview</span></a>
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Settings</span></a>
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Security</span></a>
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Notifications</span></a>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a href="#support" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-compass fe-16"></i>
-                <span class="ml-3 item-text">Help Desk</span>
-              </a>
-              <ul class="collapse list-unstyled pl-4 w-100" id="support">
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Home</span></a>
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Tickets</span></a>
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Ticket Detail</span></a>
-                <a class="nav-link pl-3" href="#"><span class="ml-1">FAQs</span></a>
-              </ul>
-            </li>
-          </ul>
-          <p class="text-muted nav-heading mt-4 mb-1">
-            <span>Extra</span>
-          </p>
-          <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item dropdown">
-              <a href="#auth" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-shield fe-16"></i>
-                <span class="ml-3 item-text">Email</span>
-              </a>
-              <ul class="collapse list-unstyled pl-4 w-100" id="auth">
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Inbox</span></a>
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Compose</span></a>
-                <a class="nav-link pl-3" href="#"><span class="ml-1">Trash</span></a>
-              </ul>
-            </li>
-          </ul>
-          <p class="text-muted nav-heading mt-4 mb-1">
-            <span>Documentation</span>
-          </p>
-          <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item w-100">
-              <a class="nav-link" href="#">
-                <i class="fe fe-help-circle fe-16"></i>
-                <span class="ml-3 item-text">Getting Start</span>
-              </a>
-            </li>
-          </ul>
-          <div class="btn-box w-100 mt-4 mb-1">
-            <a href="#" target="_blank" class="btn mb-2 btn-primary btn-lg btn-block">
-              <i class="fe fe-shopping-cart fe-12 mx-2"></i><span class="small">Project</span>
-            </a>
-          </div>
-        </nav>
-      </aside>
-      <main role="main" class="main-content">
-        <div class="container-fluid">
-          <div class="row justify-content-center">
-            <div class="col-12">
-              <div class="row align-items-center mb-2">
-                <div class="col">
-                  <h2 class="h5 page-title">Welcome!</h2>
-                </div>
-                <div class="col-auto">
-                  <form class="form-inline">
-                    <div class="form-group d-none d-lg-inline">
-                      <label for="reportrange" class="sr-only">Date Ranges</label>
-                      <div id="reportrange" class="px-2 py-2 text-muted">
-                        <span class="small"></span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <button type="button" class="btn btn-sm"><span class="fe fe-refresh-ccw fe-16 text-muted"></span></button>
-                      <button type="button" class="btn btn-sm mr-2"><span class="fe fe-filter fe-16 text-muted"></span></button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="mb-2 align-items-center">
-                <div class="card shadow mb-4">
-                  <div class="card-body">
-                    <div class="row mt-1 align-items-center">
-                      <div class="col-12 col-lg-4 text-left pl-4">
-                        <p class="mb-1 small text-muted">Balance</p>
-                        <span class="h3">$12,600</span>
-                        <span class="small text-muted">+20%</span>
-                        <span class="fe fe-arrow-up text-success fe-12"></span>
-                        <p class="text-muted mt-2"> Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui </p>
-                      </div>
-                      <div class="col-6 col-lg-2 text-center py-4">
-                        <p class="mb-1 small text-muted">Today</p>
-                        <span class="h3">$2600</span><br />
-                        <span class="small text-muted">+20%</span>
-                        <span class="fe fe-arrow-up text-success fe-12"></span>
-                      </div>
-                      <div class="col-6 col-lg-2 text-center py-4 mb-2">
-                        <p class="mb-1 small text-muted">Goal Value</p>
-                        <span class="h3">$260</span><br />
-                        <span class="small text-muted">+6%</span>
-                        <span class="fe fe-arrow-up text-success fe-12"></span>
-                      </div>
-                      <div class="col-6 col-lg-2 text-center py-4">
-                        <p class="mb-1 small text-muted">Completions</p>
-                        <span class="h3">26</span><br />
-                        <span class="small text-muted">+20%</span>
-                        <span class="fe fe-arrow-up text-success fe-12"></span>
-                      </div>
-                      <div class="col-6 col-lg-2 text-center py-4">
-                        <p class="mb-1 small text-muted">Conversion</p>
-                        <span class="h3">6%</span><br />
-                        <span class="small text-muted">-2%</span>
-                        <span class="fe fe-arrow-down text-danger fe-12"></span>
-                      </div>
-                    </div>
-                    <div class="chartbox mr-4">
-                      <div id="areaChart"></div>
-                    </div>
-                  </div> <!-- .card-body -->
-                </div> <!-- .card -->
-              </div>
-              <div class="row items-align-baseline">
-                <div class="col-md-12 col-lg-4">
-                  <div class="card shadow eq-card mb-4">
-                    <div class="card-body mb-n3">
-                      <div class="row items-align-baseline h-100">
-                        <div class="col-md-6 my-3">
-                          <p class="mb-0"><strong class="mb-0 text-uppercase text-muted">Earning</strong></p>
-                          <h3>$2,562</h3>
-                          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div class="col-md-6 my-4 text-center">
-                          <div lass="chart-box mx-4">
-                            <div id="radialbarWidget"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-6 border-top py-3">
-                          <p class="mb-1"><strong class="text-muted">Cost</strong></p>
-                          <h4 class="mb-0">108</h4>
-                          <p class="small text-muted mb-0"><span>37.7% Last week</span></p>
-                        </div> <!-- .col -->
-                        <div class="col-md-6 border-top py-3">
-                          <p class="mb-1"><strong class="text-muted">Revenue</strong></p>
-                          <h4 class="mb-0">1168</h4>
-                          <p class="small text-muted mb-0"><span>-18.9% Last week</span></p>
-                        </div> <!-- .col -->
-                      </div>
-                    </div> <!-- .card-body -->
-                  </div> <!-- .card -->
-                </div> <!-- .col -->
-                <div class="col-md-12 col-lg-4">
-                  <div class="card shadow eq-card mb-4">
-                    <div class="card-body">
-                      <div class="chart-widget mb-2">
-                        <div id="radialbar"></div>
-                      </div>
-                      <div class="row items-align-center">
-                        <div class="col-4 text-center">
-                          <p class="text-muted mb-1">Cost</p>
-                          <h6 class="mb-1">$1,823</h6>
-                          <p class="text-muted mb-0">+12%</p>
-                        </div>
-                        <div class="col-4 text-center">
-                          <p class="text-muted mb-1">Revenue</p>
-                          <h6 class="mb-1">$6,830</h6>
-                          <p class="text-muted mb-0">+8%</p>
-                        </div>
-                        <div class="col-4 text-center">
-                          <p class="text-muted mb-1">Earning</p>
-                          <h6 class="mb-1">$4,830</h6>
-                          <p class="text-muted mb-0">+8%</p>
-                        </div>
-                      </div>
-                    </div> <!-- .card-body -->
-                  </div> <!-- .card -->
-                </div> <!-- .col -->
-                <div class="col-md-12 col-lg-4">
-                  <div class="card shadow eq-card mb-4">
-                    <div class="card-body">
-                      <div class="d-flex mt-3 mb-4">
-                        <div class="flex-fill pt-2">
-                          <p class="mb-0 text-muted">Total</p>
-                          <h4 class="mb-0">108</h4>
-                          <span class="small text-muted">+37.7%</span>
-                        </div>
-                        <div class="flex-fill chart-box mt-n2">
-                          <div id="barChartWidget"></div>
-                        </div>
-                      </div> <!-- .d-flex -->
-                      <div class="row border-top">
-                        <div class="col-md-6 pt-4">
-                          <h6 class="mb-0">108 <span class="small text-muted">+37.7%</span></h6>
-                          <p class="mb-0 text-muted">Cost</p>
-                        </div>
-                        <div class="col-md-6 pt-4">
-                          <h6 class="mb-0">1168 <span class="small text-muted">-18.9%</span></h6>
-                          <p class="mb-0 text-muted">Revenue</p>
-                        </div>
-                      </div> <!-- .row -->
-                    </div> <!-- .card-body -->
-                  </div> <!-- .card -->
-                </div> <!-- .col-md -->
-              </div> <!-- .row -->
-              <div class="row">
-                <!-- Recent Activity -->
-                <div class="col-md-12 col-lg-4 mb-4">
-                  <div class="card timeline shadow">
-                    <div class="card-header">
-                      <strong class="card-title">Recent Activity</strong>
-                      <a class="float-right small text-muted" href="#!">View all</a>
-                    </div>
-                    <div class="card-body" data-simplebar style="height:355px; overflow-y: auto; overflow-x: hidden;">
-                      <h6 class="text-uppercase text-muted mb-4">Today</h6>
-                      <div class="pb-3 timeline-item item-primary">
-                        <div class="pl-5">
-                          <div class="mb-1"><strong>@Brown Asher</strong><span class="text-muted small mx-2">Just create new layout Index, form, table</span><strong>Tiny Admin</strong></div>
-                          <p class="small text-muted">Creative Design <span class="badge badge-light">1h ago</span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="pb-3 timeline-item item-warning">
-                        <div class="pl-5">
-                          <div class="mb-3"><strong>@Hester Nissim</strong><span class="text-muted small mx-2">has upload new files to</span><strong>Tiny Admin</strong></div>
-                          <div class="row mb-3">
-                            <div class="col"><img src="./assets/products/p1.jpg" alt="..." class="img-fluid rounded"></div>
-                            <div class="col"><img src="./assets/products/p2.jpg" alt="..." class="img-fluid rounded"></div>
-                            <div class="col"><img src="./assets/products/p3.jpg" alt="..." class="img-fluid rounded"></div>
-                            <div class="col"><img src="./assets/products/p4.jpg" alt="..." class="img-fluid rounded"></div>
-                          </div>
-                          <p class="small text-muted">Front-End Development <span class="badge badge-light">1h ago</span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="pb-3 timeline-item item-success">
-                        <div class="pl-5">
-                          <div class="mb-3"><strong>@Kelley Sonya</strong><span class="text-muted small mx-2">has commented on</span><strong>Advanced table</strong></div>
-                          <div class="card d-inline-flex mb-2">
-                            <div class="card-body bg-light py-2 px-3 small rounded"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim nulla eu quam cursus placerat. Vivamus non odio ullamcorper, lacinia ante nec, blandit leo. </div>
-                          </div>
-                          <p class="small text-muted">Back-End Development <span class="badge badge-light">1h ago</span>
-                          </p>
-                        </div>
-                      </div>
-                      <h6 class="text-uppercase text-muted mb-4">Yesterday</h6>
-                      <div class="pb-3 timeline-item item-warning">
-                        <div class="pl-5">
-                          <div class="mb-3"><strong>@Fletcher Everett</strong><span class="text-muted small mx-2">created new group for</span><strong>Tiny Admin</strong></div>
-                          <ul class="avatars-list mb-3">
-                            <li>
-                              <a href="#!" class="avatar avatar-sm">
-                                <img alt="..." class="avatar-img rounded-circle" src="./assets/avatars/face-1.jpg">
-                              </a>
-                            </li>
-                            <li>
-                              <a href="#!" class="avatar avatar-sm">
-                                <img alt="..." class="avatar-img rounded-circle" src="./assets/avatars/face-4.jpg">
-                              </a>
-                            </li>
-                            <li>
-                              <a href="#!" class="avatar avatar-sm">
-                                <img alt="..." class="avatar-img rounded-circle" src="./assets/avatars/face-3.jpg">
-                              </a>
-                            </li>
-                          </ul>
-                          <p class="small text-muted">Front-End Development <span class="badge badge-light">1h ago</span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="pb-3 timeline-item item-success">
-                        <div class="pl-5">
-                          <div class="mb-3"><strong>@Bertha Ball</strong><span class="text-muted small mx-2">has commented on</span><strong>Advanced table</strong></div>
-                          <div class="card d-inline-flex mb-2">
-                            <div class="card-body bg-light py-2 px-3"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim nulla eu quam cursus placerat. Vivamus non odio ullamcorper, lacinia ante nec, blandit leo. </div>
-                          </div>
-                          <p class="small text-muted">Back-End Development <span class="badge badge-light">1h ago</span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="pb-3 timeline-item item-danger">
-                        <div class="pl-5">
-                          <div class="mb-3"><strong>@Lillith Joseph</strong><span class="text-muted small mx-2">has upload new files to</span><strong>Tiny Admin</strong></div>
-                          <div class="row mb-3">
-                            <div class="col"><img src="./assets/products/p4.jpg" alt="..." class="img-fluid rounded"></div>
-                            <div class="col"><img src="./assets/products/p1.jpg" alt="..." class="img-fluid rounded"></div>
-                            <div class="col"><img src="./assets/products/p2.jpg" alt="..." class="img-fluid rounded"></div>
-                          </div>
-                          <p class="small text-muted">Front-End Development <span class="badge badge-light">1h ago</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div> <!-- / .card-body -->
-                  </div> <!-- / .card -->
-                </div> <!-- / .col-md-6 -->
-                <!-- Striped rows -->
-                <div class="col-md-12 col-lg-8">
-                  <div class="card shadow">
-                    <div class="card-header">
-                      <strong class="card-title">Recent Data</strong>
-                      <a class="float-right small text-muted" href="#!">View all</a>
-                    </div>
-                    <div class="card-body my-n2">
-                      <table class="table table-striped table-hover table-borderless">
-                        <thead>
-                          <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Address</th>
-                            <th>Date</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>2474</td>
-                            <th scope="col">Brown, Asher D.</th>
-                            <td>Ap #331-7123 Lobortis Avenue</td>
-                            <td>13/09/2020</td>
-                            <td>
-                              <div class="dropdown">
-                                <button class="btn btn-sm dropdown-toggle more-vertical" type="button" id="dr1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <span class="text-muted sr-only">Action</span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dr1">
-                                  <a class="dropdown-item" href="#">Edit</a>
-                                  <a class="dropdown-item" href="#">Remove</a>
-                                  <a class="dropdown-item" href="#">Assign</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>2786</td>
-                            <th scope="col">Leblanc, Yoshio V.</th>
-                            <td>287-8300 Nisl. St.</td>
-                            <td>04/05/2019</td>
-                            <td>
-                              <div class="dropdown">
-                                <button class="btn btn-sm dropdown-toggle more-vertical" type="button" id="dr2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <span class="text-muted sr-only">Action</span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dr2">
-                                  <a class="dropdown-item" href="#">Edit</a>
-                                  <a class="dropdown-item" href="#">Remove</a>
-                                  <a class="dropdown-item" href="#">Assign</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>2747</td>
-                            <th scope="col">Hester, Nissim L.</th>
-                            <td>4577 Cras St.</td>
-                            <td>04/06/2019</td>
-                            <td>
-                              <div class="dropdown">
-                                <button class="btn btn-sm dropdown-toggle more-vertical" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <span class="text-muted sr-only">Action</span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                  <a class="dropdown-item" href="#">Edit</a>
-                                  <a class="dropdown-item" href="#">Remove</a>
-                                  <a class="dropdown-item" href="#">Assign</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>2639</td>
-                            <th scope="col">Gardner, Leigh S.</th>
-                            <td>P.O. Box 228, 7512 Lectus Ave</td>
-                            <td>04/08/2019</td>
-                            <td>
-                              <div class="dropdown">
-                                <button class="btn btn-sm dropdown-toggle more-vertical" type="button" id="dr4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <span class="text-muted sr-only">Action</span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dr4">
-                                  <a class="dropdown-item" href="#">Edit</a>
-                                  <a class="dropdown-item" href="#">Remove</a>
-                                  <a class="dropdown-item" href="#">Assign</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>2238</td>
-                            <th scope="col">Higgins, Uriah L.</th>
-                            <td>Ap #377-5357 Sed Road</td>
-                            <td>04/01/2019</td>
-                            <td>
-                              <div class="dropdown">
-                                <button class="btn btn-sm dropdown-toggle more-vertical" type="button" id="dr5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <span class="text-muted sr-only">Action</span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dr5">
-                                  <a class="dropdown-item" href="#">Edit</a>
-                                  <a class="dropdown-item" href="#">Remove</a>
-                                  <a class="dropdown-item" href="#">Assign</a>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div> <!-- Striped rows -->
-              </div> <!-- .row-->
-            </div> <!-- .col-12 -->
-          </div> <!-- .row -->
-        </div> <!-- .container-fluid -->
-        <div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="defaultModalLabel">Notifications</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="list-group list-group-flush my-n3">
-                  <div class="list-group-item bg-transparent">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <span class="fe fe-box fe-24"></span>
-                      </div>
-                      <div class="col">
-                        <small><strong>Package has uploaded successfull</strong></small>
-                        <div class="my-0 text-muted small">Package is zipped and uploaded</div>
-                        <small class="badge badge-pill badge-light text-muted">1m ago</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="list-group-item bg-transparent">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <span class="fe fe-download fe-24"></span>
-                      </div>
-                      <div class="col">
-                        <small><strong>Widgets are updated successfull</strong></small>
-                        <div class="my-0 text-muted small">Just create new layout Index, form, table</div>
-                        <small class="badge badge-pill badge-light text-muted">2m ago</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="list-group-item bg-transparent">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <span class="fe fe-inbox fe-24"></span>
-                      </div>
-                      <div class="col">
-                        <small><strong>Notifications have been sent</strong></small>
-                        <div class="my-0 text-muted small">Fusce dapibus, tellus ac cursus commodo</div>
-                        <small class="badge badge-pill badge-light text-muted">30m ago</small>
-                      </div>
-                    </div> <!-- / .row -->
-                  </div>
-                  <div class="list-group-item bg-transparent">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <span class="fe fe-link fe-24"></span>
-                      </div>
-                      <div class="col">
-                        <small><strong>Link was attached to menu</strong></small>
-                        <div class="my-0 text-muted small">New layout has been attached to the menu</div>
-                        <small class="badge badge-pill badge-light text-muted">1h ago</small>
-                      </div>
-                    </div>
-                  </div> <!-- / .row -->
-                </div> <!-- / .list-group -->
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Clear All</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal fade modal-shortcut modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="defaultModalLabel">Shortcuts</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body px-5">
-                <div class="row align-items-center">
-                  <div class="col-6 text-center">
-                    <div class="squircle bg-success justify-content-center">
-                      <i class="fe fe-cpu fe-32 align-self-center text-white"></i>
-                    </div>
-                    <p>Control area</p>
-                  </div>
-                  <div class="col-6 text-center">
-                    <div class="squircle bg-primary justify-content-center">
-                      <i class="fe fe-activity fe-32 align-self-center text-white"></i>
-                    </div>
-                    <p>Activity</p>
-                  </div>
-                </div>
-                <div class="row align-items-center">
-                  <div class="col-6 text-center">
-                    <div class="squircle bg-primary justify-content-center">
-                      <i class="fe fe-droplet fe-32 align-self-center text-white"></i>
-                    </div>
-                    <p>Droplet</p>
-                  </div>
-                  <div class="col-6 text-center">
-                    <div class="squircle bg-primary justify-content-center">
-                      <i class="fe fe-upload-cloud fe-32 align-self-center text-white"></i>
-                    </div>
-                    <p>Upload</p>
-                  </div>
-                </div>
-                <div class="row align-items-center">
-                  <div class="col-6 text-center">
-                    <div class="squircle bg-primary justify-content-center">
-                      <i class="fe fe-users fe-32 align-self-center text-white"></i>
-                    </div>
-                    <p>Users</p>
-                  </div>
-                  <div class="col-6 text-center">
-                    <div class="squircle bg-primary justify-content-center">
-                      <i class="fe fe-settings fe-32 align-self-center text-white"></i>
-                    </div>
-                    <p>Settings</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main> <!-- main -->
+
+      <!-- Topnav include -->
+      @include('dashboard.partials.topnav')
+      <!-- Topnav include -->
+      @include('dashboard.partials.sidebar')
+      <!-- Main content -->
+      @yield('dashboard')
+      
     </div> <!-- .wrapper -->
-    <script src="assets/dashboard/js/jquery.min.js"></script>
-    <script src="assets/dashboard/js/popper.min.js"></script>
-    <script src="assets/dashboard/js/moment.min.js"></script>
-    <script src="assets/dashboard/js/bootstrap.min.js"></script>
-    <script src="assets/dashboard/js/simplebar.min.js"></script>
-    <script src='assets/dashboard/js/daterangepicker.js'></script>
-    <script src='assets/dashboard/js/jquery.stickOnScroll.js'></script>
-    <script src="assets/dashboard/js/tinycolor-min.js"></script>
-    <script src="assets/dashboard/js/config.js"></script>
-    <script src="assets/dashboard/js/d3.min.js"></script>
-    <script src="assets/dashboard/js/topojson.min.js"></script>
-    <script src="assets/dashboard/js/datamaps.all.min.js"></script>
-    <script src="assets/dashboard/js/datamaps-zoomto.js"></script>
-    <script src="assets/dashboard/js/datamaps.custom.js"></script>
-    <script src="assets/dashboard/js/Chart.min.js"></script>
+    <script src="{{ asset('assets/dashboard/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/simplebar.min.js') }}"></script>
+    <script src='{{ asset('assets/dashboard/js/daterangepicker.js') }}'></script>
+    <script src='{{ asset('assets/dashboard/js/jquery.stickOnScroll.js') }}'></script>
+    <script src="{{ asset('assets/dashboard/js/tinycolor-min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/config.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/d3.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/topojson.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/datamaps.all.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/datamaps-zoomto.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/datamaps.custom.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/Chart.min.js') }}"></script>
     <script>
       /* defind global options */
       Chart.defaults.global.defaultFontFamily = base.defaultFontFamily;
       Chart.defaults.global.defaultFontColor = colors.mutedColor;
     </script>
-    <script src="assets/dashboard/js/gauge.min.js"></script>
-    <script src="assets/dashboard/js/jquery.sparkline.min.js"></script>
-    <script src="assets/dashboard/js/apexcharts.min.js"></script>
-    <script src="assets/dashboard/js/apexcharts.custom.js"></script>
-    <script src='assets/dashboard/js/jquery.mask.min.js'></script>
-    <script src='assets/dashboard/js/select2.min.js'></script>
-    <script src='assets/dashboard/js/jquery.steps.min.js'></script>
-    <script src='assets/dashboard/js/jquery.validate.min.js'></script>
-    <script src='assets/dashboard/js/jquery.timepicker.js'></script>
-    <script src='assets/dashboard/js/dropzone.min.js'></script>
-    <script src='assets/dashboard/js/uppy.min.js'></script>
-    <script src='assets/dashboard/js/quill.min.js'></script>
+    <script src="{{ asset('assets/dashboard/js/gauge.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/js/apexcharts.custom.js') }}"></script>
+    <script src='{{ asset('assets/dashboard/js/jquery.mask.min.js') }}'></script>
+    <script src='{{ asset('assets/dashboard/js/select2.min.js') }}'></script>
+    <script src='{{ asset('assets/dashboard/js/jquery.steps.min.js') }}'></script>
+    <script src='{{ asset('assets/dashboard/js/jquery.validate.min.js') }}'></script>
+    <script src='{{ asset('assets/dashboard/js/jquery.timepicker.js') }}'></script>
+    <script src='{{ asset('assets/dashboard/js/dropzone.min.js') }}'></script>
+    <script src='{{ asset('assets/dashboard/js/uppy.min.js') }}'></script>
+    <script src='{{ asset('assets/dashboard/js/quill.min.js') }}'></script>
+
+    <script src='{{ asset('assets/dashboard/js/jquery.dataTables.min.js') }}'></script>
+    <script src='{{ asset('assets/dashboard/js/dataTables.bootstrap4.min.js') }}'></script>
+    <script>
+      $('#dataTable-1').DataTable(
+        {
+            autoWidth: true,
+            "lengthMenu": [
+              [8, 16, 32, -1],
+              [8, 16, 32, "All"]
+            ]
+        });
+    </script>
+
+    <script src="{{ asset('assets/dashboard/js/apps.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag()
+      {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-56159088-1');
+    </script>
+    <script>
+      @if(Session::has('message'))
+      var type = "{{ Session::get('alert-type','info') }}"
+      switch(type){
+          case 'info':
+          toastr.info(" {{ Session::get('message') }} ");
+          break;
+          case 'success':
+          toastr.success(" {{ Session::get('message') }} ");
+          break;
+          case 'warning':
+          toastr.warning(" {{ Session::get('message') }} ");
+          break;
+          case 'error':
+          toastr.error(" {{ Session::get('message') }} ");
+          break; 
+        }
+      @endif 
+    </script>
     <script>
       $('.select2').select2(
       {
@@ -991,7 +323,6 @@
         });
       }
     </script>
-    <script src="assets/dashboard/js/apps.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
     <script>
