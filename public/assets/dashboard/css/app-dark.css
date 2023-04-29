@@ -3032,7 +3032,7 @@ input[type="button"].btn-block {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem; }
+  padding: 0.1rem 1rem; }
   .navbar .container,
   .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl {
     display: flex;
@@ -7922,7 +7922,7 @@ select {
   .vertical .main-content,
   .vertical.hover .main-content,
   .vertical.narrow .main-content {
-    padding: .5rem; }
+    padding: 0.1rem; }
   .vertical .vertnav .navbar-toggler,
   .vertical.hover .vertnav .navbar-toggler,
   .vertical.narrow .vertnav .navbar-toggler {

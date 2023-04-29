@@ -23,12 +23,17 @@
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/daterangepicker.css') }}">
     <!-- Date tables CSS -->
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/dataTables.bootstrap4.css') }}">
+    @stack('dataTableCSS')
     <!-- App CSS -->
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/app-light.css') }}" id="lightTheme" disabled>
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/app-dark.css') }}" id="darkTheme">
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" type="text/css">
-     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css">
+    {{-- <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'> --}}
+
+    <link href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
+    
   </head>
   <body class="vertical  dark  ">
     <div class="wrapper">
@@ -76,6 +81,7 @@
 
     <script src='{{ asset('assets/dashboard/js/jquery.dataTables.min.js') }}'></script>
     <script src='{{ asset('assets/dashboard/js/dataTables.bootstrap4.min.js') }}'></script>
+    @stack('dataTableJS')
     <script>
       $('#dataTable-1').DataTable(
         {
@@ -89,7 +95,8 @@
 
     <script src="{{ asset('assets/dashboard/js/apps.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+    <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
 
     <script>
       window.dataLayer = window.dataLayer || [];

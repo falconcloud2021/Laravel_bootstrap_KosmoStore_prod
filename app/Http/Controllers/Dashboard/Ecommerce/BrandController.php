@@ -19,7 +19,8 @@ class BrandController extends Controller
     public function brandsListAdd()
     {
     	$brandsList = Brand::latest()->get();
-    	return view('dashboard.ecommerce.brand.brand-add-list',compact('brandsList'));
+		$brandArchivedList = Brand::onlyTrashed()->get();
+    	return view('dashboard.ecommerce.brand.brand-add-list',compact('brandsList', 'brandArchivedList'));
 
     }
 
@@ -196,22 +197,45 @@ class BrandController extends Controller
 
     } // end "updateBrand" method 
 
-    public function destroyBrand($id)
-	{
-    	$brand = Brand::findOrFail($id);
-    	$img = $brand->brand_logo;
-		if(file_exists($img)){
-			unlink($img);
-		}
-
-    	Brand::findOrFail($id)->delete();
+    public function archiveBrand($id)
+	{	
+		Brand::findOrFail($id)->delete();
 
 		$notification = array(
-			'message' => 'Бренд було видалено із бази даних!',
+			'message' => 'Категорію було переміщено до архіву!',
 			'alert-type' => 'warning'
 		);
-
 		return redirect()->back()->with($notification);
 
-    } // end "destroyBrand" method 
+    } // end "archiveBrand" method 
+
+	public function restoreBrand($id)
+	{
+    	$brand = Brand::onlyTrashed()->findOrFail($id);
+		if(!empty($brand)) {
+			$brand->restore();
+		}
+    
+		$notification = array(
+			'message' => 'Категорію було успішно відновлено та додано до основного списку!',
+			'alert-type' => 'success'
+		);
+		return redirect()->back()->with($notification);
+
+    } // end "restoreBrand" method
+
+	public function deleteBrand($id)
+	{	
+		$brand = Brand::onlyTrashed()->findOrFail($id);
+		if(!empty($brand)) {
+			$brand->forceDelete();
+		}
+    
+		$notification = array(
+			'message' => 'Категорію було видалено з бази даних!',
+			'alert-type' => 'warning'
+		);
+		return redirect()->back()->with($notification);
+
+    } // end "deleteBrand" method
 }

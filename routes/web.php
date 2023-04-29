@@ -47,7 +47,21 @@ Route::prefix('brand')->group(function () {
     Route::post('/store', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'storeBrand'])->name('brand.store');
     Route::get('/edit/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'editBrand'])->name('brand.edit');
     Route::post('/update/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'updateBrand'])->name('brand.update');
-    Route::get('/destroy/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'destroyBrand'])->name('brand.destroy');
+    Route::get('/archive/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'archiveBrand'])->name('brand.archive');
+    Route::get('/restore/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'restoreBrand'])->name('brand.restore');
+    Route::get('/delete/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\BrandController::class, 'deleteBrand'])->name('brand.delete');
+});
+
+Route::prefix('category')->group(function () {
+    Route::get('/list-add', [\App\Http\Controllers\Dashboard\Ecommerce\CategoryController::class, 'categoriesListAdd'])->name('categories.list-add'); 
+    Route::get('/chart-list', [\App\Http\Controllers\Dashboard\Ecommerce\CategoryController::class, 'categoriesChartList'])->name('categories.chart-list');
+    Route::get('/grid-detail', [\App\Http\Controllers\Dashboard\Ecommerce\CategoryController::class, 'categoriesGridDetail'])->name('categories.grid-detail');
+    Route::post('/store', [\App\Http\Controllers\Dashboard\Ecommerce\CategoryController::class, 'storeCategory'])->name('category.store');
+    Route::get('/edit/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\CategoryController::class, 'editCategory'])->name('category.edit');
+    Route::post('/update/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\CategoryController::class, 'updateCategory'])->name('category.update');
+    Route::get('/archive/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\CategoryController::class, 'archiveCategory'])->name('category.archive');
+    Route::get('/restore/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\CategoryController::class, 'restoreCategory'])->name('category.restore');
+    Route::get('/delete/{id}', [\App\Http\Controllers\Dashboard\Ecommerce\CategoryController::class, 'deleteCategory'])->name('category.delete');
 });
     
 

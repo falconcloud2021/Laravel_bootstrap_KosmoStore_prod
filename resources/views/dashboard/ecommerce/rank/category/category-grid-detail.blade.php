@@ -4,11 +4,27 @@
 <main role="main" class="main-content">
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-xl-12">
-
-        <!------------- Topnav include ---------------->
-        @include('dashboard.partials.brand.brand-topnav')
+      <div class="col-xl-12">      
+        <div class="row align-items-center my-1">
+          <div class="col">
+            <h5>Розділ "Бренди"</h5> 
+          </div>
+          <div class="col-auto">
+            <a href="{{ route('brands.list-add') }}"><button class="btn btn-sm btn-success waves-effect" type="submit" title="Список основних Брендів"><i class="fe fe-list"></i></button></a>
+            <a href="{{ route('brands.chart-list') }}"><button class="btn btn-sm btn-primary waves-effect" type="submit"><i class="fe fe-bar-chart-2" title="Статистика по основних Брендах"></i></button></a>
+            <a href="{{ route('brands.grid-detail') }}"><button class="btn btn-sm btn-info waves-effect" type="submit" title="Віджет основних Брендів"><i class="fe fe-grid"></i></button></a>
+            <a href="{{ route('manager') }}"><button class="btn btn-sm btn-dark waves-effect" type="submit"><i class="fe fe-home" title="На головну сторінку"></i></button></a>
+            <button class="btn dropdown-toggle more-horizontal" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Меню форми">
+              <span class="text-muted sr-only">Дії</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target=".bd-example-modal-xl" title="1"><i class="fe fe-list mr-1"></i>1</a>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target=".bd-example-modal-xl" title="2"><i class="fe fe-grid mr-1"></i>2</a>         
+            </div>
+          </div>       
+        </div>     
         
+    
         <div class="file-container border-top">
           <div class="file-panel mt-1">
 
@@ -67,7 +83,7 @@
                             <div class="dropdown-menu m-2">
                               <a class="dropdown-item" href="{{ route('brands.grid-detail',$cell->id) }}" data-toggle="modal" data-target=".bd-example-modal-xl" title="Детальніше про Бренд"><i class="fe fe-eye mr-2"></i>Детальніше</a>
                               <a class="dropdown-item" href="{{ route('brand.edit',$cell->id) }}" title="Редагувати картку Бренда"><i class="fe fe-pen-tool mr-2"></i>Редагувати</a>
-                              <a class="dropdown-item" href="{{ route('brand.archive',$cell->id) }}" id="delete" title="Видалити картку Бренда"><i class="fe fe-trash-2 mr-2"></i>Видалити</a>
+                              <a class="dropdown-item" href="{{ route('brand.destroy',$cell->id) }}" id="delete" title="Видалити картку Бренда"><i class="fe fe-trash-2 mr-2"></i>Видалити</a>
                             </div>
                         </div>
                       </div>

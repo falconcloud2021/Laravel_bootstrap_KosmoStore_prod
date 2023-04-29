@@ -25,7 +25,7 @@ class CreateCategoriesTable extends Migration
             $table->text('category_description_ru')->nullable();
             $table->integer('category_touches')->default(0);
             $table->float('category_rated', 3, 2)->nullable();
-            $table->enum('category_status', ['active','hold','stop'])->default('active');
+            $table->enum('category_status', ['active','hold'])->default('active');
             $table->foreignIdFor(User::class, 'created_by')->nullable();
             $table->foreignIdFor(User::class, 'updated_by')->nullable();
             $table->foreignIdFor(User::class, 'deleted_by')->nullable();

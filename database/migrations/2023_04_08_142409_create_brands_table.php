@@ -23,7 +23,7 @@ class CreateBrandsTable extends Migration
             $table->text('brand_description_ru', 2000)->nullable();
             $table->integer('brand_touches')->nullable();
             $table->float('brand_rated', 3, 2)->nullable();
-            $table->enum('brand_status', ['active','hold','stop'])->default('active');
+            $table->enum('brand_status', ['active','hold'])->default('active');
             $table->foreignIdFor(User::class, 'created_by')->nullable();
             $table->foreignIdFor(User::class, 'updated_by')->nullable();
             $table->foreignIdFor(User::class, 'deleted_by')->nullable();

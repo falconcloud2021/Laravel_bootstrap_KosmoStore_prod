@@ -51,7 +51,7 @@
         </a>
         <ul class="collapse list-unstyled pl-4 w-100" id="reports">
         <li class="nav-item active">
-            <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Основний</span></a>
+            <a class="nav-link pl-3" href="/manager"><span class="ml-1 item-text">Основний</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Аналітика</span></a>
@@ -102,7 +102,7 @@
             <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Продукти</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Категорії</span></a>
+            <a class="nav-link pl-3" href="{{ route('categories.list-add') }}"><span class="ml-1 item-text">Категорії</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">Підкатегорії</span></a>
